@@ -1,0 +1,9 @@
+com\jpmc\controller\RegistrationController.class
+com\jpmc\controller\LoginController.class
+com\jpmc\service\UserServiceImpl.class
+com\jpmc\model\User.class
+com\jpmc\dao\UserDaoImpl.class
+com\jpmc\dao\UserDao.class
+com\jpmc\model\Login.class
+com\jpmc\service\UserService.class
+com\jpmc\dao\UserMapper.class

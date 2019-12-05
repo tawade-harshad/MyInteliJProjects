@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+        <!-- Aggregation and Composition - Package - Context Mapping -->
+
+    <!--    <bean id = "e" class="com.jpmc.aggregateandcomposition.Employee">
+            <constructor-arg value="10" type="int"></constructor-arg>
+            <constructor-arg value="Harshad"></constructor-arg>
+            <constructor-arg>
+                <ref bean="m"></ref>
+            </constructor-arg>
+
+            <constructor-arg>
+                    <ref bean="t"></ref>
+            </constructor-arg>
+        </bean>-->
+
+        <bean id = "e1" class="com.jpmc.aggregateandcomposition.Employee">
+            <property name="empId" value="10"></property>
+            <property name="empName" value="Harshad"></property>
+            <property name="manager" ref="m1"></property>
+            <property name="teamLead" ref="t1"></property>
+        </bean>
+
+        <!--<bean id = "m" class="com.jpmc.aggregateandcomposition.Manager">
+            <constructor-arg value="20" ></constructor-arg>
+            <constructor-arg value="Harshad Manager"></constructor-arg>
+            <constructor-arg value="CIB Department Manager"></constructor-arg>
+        </bean>-->
+
+        <bean id = "m1" class="com.jpmc.aggregateandcomposition.Manager">
+            <property name="managerID" value="20"></property>
+            <property name="managerName" value="Harshad Manager"></property>
+            <property name="managerDept" value="CIB Department Manager"></property>
+        </bean>
+
+<!--        <bean id = "t" class="com.jpmc.aggregateandcomposition.TeamLead">
+            <constructor-arg value="30"></constructor-arg>
+            <constructor-arg value="Harshad Team Lead"></constructor-arg>
+            <constructor-arg value="CIB Department Team Lead"></constructor-arg>
+            <constructor-arg value="Hotel Booking Management System"></constructor-arg>
+        </bean>-->
+
+        <bean id = "t1" class="com.jpmc.aggregateandcomposition.TeamLead">
+            <property name="tlID" value="30"></property>
+            <property name="tlName" value="Harshad Team Lead"></property>
+            <property name="tlDept" value="CIB Department Team Lead"></property>
+            <property name="tlProject" value="Hotel Booking Management System"></property>
+        </bean>
+
+        <!-- Collection  - Package - Context Mapping -->
+        <!--<bean id = "ec" class="com.jpmc.collection.Employee">
+            <constructor-arg value="10" ></constructor-arg>
+            <constructor-arg value="Harshad"></constructor-arg>
+            <constructor-arg>
+                <list>
+                    <ref bean="jr0"></ref>
+                    <ref bean="jr1"></ref>
+                    <ref bean="jr2"></ref>
+                </list>
+            </constructor-arg>
+        </bean>-->
+
+        <bean id = "ec" class="com.jpmc.collection.Employee">
+            <property name="empId" value="10"></property>
+            <property name="empName" value="Harshad"></property>
+            <property name="jobList">
+                    <list>
+                        <ref bean="jr0"></ref>
+                        <ref bean="jr1"></ref>
+                        <ref bean="jr2"></ref>
+                    </list>
+            </property>
+        </bean>
+
+    <!--    <bean id = "ec1" class="com.jpmc.collection.Employee">
+            <constructor-arg value="10" ></constructor-arg>
+            <constructor-arg value="Harshad"></constructor-arg>
+            <constructor-arg>
+                <map>
+                    <entry key="TCS" value-ref="list1"></entry>
+                    <entry key="INFOSYS" value-ref="list2"></entry>
+                    <entry key="JPMC" value-ref="list3"></entry>
+                    <entry key="COGNIZANT" value-ref="list4"></entry>
+                </map>
+            </constructor-arg>
+        </bean>-->
+
+        <bean id = "ec1" class="com.jpmc.collection.Employee">
+            <property name="empId" value="10"></property>
+            <property name="empName" value="Harshad"></property>
+            <property name="companyMap">
+                <map>
+                    <entry key="TCS" value-ref="list1"></entry>
+                    <entry key="INFOSYS" value-ref="list2"></entry>
+                    <entry key="JPMC" value-ref="list3"></entry>
+                    <entry key="COGNIZANT" value-ref="list4"></entry>
+                </map>
+            </property>
+        </bean>
+
+        <util:list id="list1">
+            <ref bean="jr0"></ref>
+            <ref bean="jr1"></ref>
+            <ref bean="jr2"></ref>
+        </util:list>
+
+        <util:list id="list2">
+            <ref bean="jr0"></ref>
+            <ref bean="jr2"></ref>
+        </util:list>
+
+        <util:list id="list3">
+            <ref bean="jr0"></ref>
+            <ref bean="jr1"></ref>
+        </util:list>
+
+        <util:list id="list4">
+            <ref bean="jr0"></ref>
+        </util:list>
+
+        <!--<bean id = "jr0" class="com.jpmc.collection.JobRole">
+            <constructor-arg value="101" ></constructor-arg>
+            <constructor-arg value="Software Engineer"></constructor-arg>
+            <constructor-arg value="Pay Scale 1"></constructor-arg>
+        </bean>-->
+
+        <bean id = "jr0" class="com.jpmc.collection.JobRole">
+            <property name="jobID" value="101"></property>
+            <property name="jobName" value="Software Engineer"></property>
+            <property name="payScale" value="Pay Scale 1"></property>
+        </bean>
+
+       <!-- <bean id = "jr1" class="com.jpmc.collection.JobRole">
+            <constructor-arg value="102" ></constructor-arg>
+            <constructor-arg value="Business Analyst"></constructor-arg>
+            <constructor-arg value="Pay Scale 2"></constructor-arg>
+        </bean>-->
+
+        <bean id = "jr1" class="com.jpmc.collection.JobRole">
+            <property name="jobID" value="102"></property>
+            <property name="jobName" value="Business Analyst"></property>
+            <property name="payScale" value="Pay Scale 2"></property>
+        </bean>
+
+        <!--<bean id = "jr2" class="com.jpmc.collection.JobRole">
+            <constructor-arg value="103" ></constructor-arg>
+            <constructor-arg value="Project Manager"></constructor-arg>
+            <constructor-arg value="Pay Scale 3"></constructor-arg>
+        </bean>-->
+
+        <bean id = "jr2" class="com.jpmc.collection.JobRole">
+            <property name="jobID" value="103"></property>
+            <property name="jobName" value="Project Manager"></property>
+            <property name="payScale" value="Pay Scale 3"></property>
+        </bean>
+</beans>

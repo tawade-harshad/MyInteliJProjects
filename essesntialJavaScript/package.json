@@ -1,0 +1,7 @@
+{
+  "name": "essesntialJavaScript",
+  "version": "1.0.0",
+  "dependencies": {
+    "node-rest-client": "latest"
+  }
+}
