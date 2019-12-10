@@ -1,0 +1,51 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Edit</th>
+    <th>Delete</th>
+    <th>Loan Id</th>
+    <th>Loan Type</th>
+    <th>Opening Date</th>
+    <th>Closing Date</th>
+    <th>Loan Amount</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let eachCustomer of customerList">
+    <td><button (click)="edit(eachCustomer)" class="btn btn-info fa fa-edit"></button></td>
+    <td><button (click)="delete(eachCustomer)" class="btn btn-danger fa fa-remove"></button></td>
+    <td>{{eachCustomer.loanId}}</td>
+    <td>{{eachCustomer.loanType}}</td>
+    <td>{{eachCustomer.openDate}}</td>
+    <td>{{eachCustomer.closeDate}}</td>
+    <td>{{eachCustomer.loanAmount}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<form (ngSubmit)="onSubmit(frm.value)" #frm=ngForm ngNativeValidate action="">
+  <div>
+    <label for="">Loan Id</label>
+    <input type="text" [(ngModel)]="customer.loanId" name="loanId" required="required">
+  </div>
+  <div>
+    <label for="">Loan Type</label>
+    <select name="loanType" [(ngModel)]="customer.loanType">
+      <option *ngFor="let eachLoanType of loanType" [value]=eachLoanType>{{eachLoanType}}</option>
+    </select>
+  </div>
+  <div>
+    <label for="">Opening Date</label>
+    <input type="date" [(ngModel)]="customer.openDate" name="openDate">
+  </div>
+  <div>
+    <label for="">Closing Date</label>
+    <input type="date" [(ngModel)]="customer.closeDate" name="closeDate">
+  </div>
+  <div>
+    <label for="">Loan Amount</label>
+    <input type="text" [(ngModel)]="customer.loanAmount" name="loanAmount">
+  </div>
+  <button>{{btnText}}</button>
+
+</form>

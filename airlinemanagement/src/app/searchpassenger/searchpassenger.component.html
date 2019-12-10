@@ -1,0 +1,5 @@
+<label>Enter PNR to Search</label>
+<input type='text' name='pnr' [(ngModel)]='pnr'>
+<app-getpassengerdetails [reqPnr]='pnr' (paxDetail)="onReceipt($event)"></app-getpassengerdetails>
+
+<p>Result = {{result|json}}</p>

@@ -1,12 +1,10 @@
 <table class="table table-stripped">
-  <thead>
+  <tbody>
   <tr>
     <th>Passenger Name</th>
     <th>Source</th>
     <th>Destination</th>
   </tr>
-  </thead>
-  <tbody>
   <tr *ngFor="let eachPassenger of passList">
     <td>{{eachPassenger.passName}}</td>
     <td>{{eachPassenger.source}}</td>

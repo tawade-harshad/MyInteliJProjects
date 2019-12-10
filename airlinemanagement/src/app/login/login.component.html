@@ -1,0 +1,11 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <ng-container *ngFor="let eachConfig of formConfig">
+    <div>
+    <label>{{eachConfig.label}}</label>
+    <input type="{{eachConfig.type}}" formControlName="{{eachConfig.name}}" placeholder="{{eachConfig.placeholder}}">
+    </div>
+  </ng-container>
+  <span *ngIf="loginForm.controls.userName.errors">Error</span>
+  <input type="submit" value="Login">
+  {{loginStatus}}
+</form>

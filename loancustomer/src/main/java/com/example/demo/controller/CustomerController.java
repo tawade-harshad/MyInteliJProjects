@@ -9,7 +9,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(value = "*")
@@ -54,5 +54,20 @@ public class CustomerController {
     @PostMapping(value = "/customer", produces = "application/json", consumes = "application/json" )
     public LoanCustomer addLoan(@RequestBody LoanCustomer newLoan){
         return this.service.addLoan(newLoan);
+    }
+
+    @GetMapping(value = "/customer/{loanId}")
+    public Optional<LoanCustomer> getLoanByLoanId(@PathVariable("loanId") long loanId){
+        return this.service.getLoanById(loanId);
+    }
+
+    @PutMapping(value="/customer", produces = "application/json", consumes = "application/json")
+    public LoanCustomer updateLoan(@RequestBody LoanCustomer existingLoan){
+        return this.service.updateLoan(existingLoan);
+    }
+
+    @DeleteMapping(value="/customer/{loanId}")
+    public boolean deleteLoan(@PathVariable("loanId") long loanId){
+        return this.service.deleteLoanById(loanId);
     }
 }

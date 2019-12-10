@@ -1,13 +1,25 @@
 <!-- Toolbar -->
-<div style="text-align: center">
-  <header>
+<div style="text-align: center" class="container">
+  <header class="row">
     <h1>
       {{title}}
     </h1>
+    <div class="col-md-12">
     <app-header></app-header>
+    </div>
   </header>
-  <section>
-    <app-showpassenger></app-showpassenger>
+  <section class="row">
+      <div class="col-md-4">
+        <!--<app-showpassenger></app-showpassenger>-->
+      </div>
+     <div class="col-md-4">
+       <app-login></app-login>
+       <app-addloancustomer></app-addloancustomer>
+       <app-showcustomer></app-showcustomer>
+     </div>
+    <div class="col-md-4">
+      <!--<app-searchpassenger></app-searchpassenger>-->
+    </div>
   </section>
   <footer>
     <app-footer></app-footer>

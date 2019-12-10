@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerService {
@@ -42,4 +43,32 @@ public class CustomerService {
     public LoanCustomer addLoan(LoanCustomer newLoan){
             return this.repo.save(newLoan);
     }
+
+    public Optional<LoanCustomer> getLoanById(long loanId){
+        return this.repo.findById(loanId);
+    }
+
+    public LoanCustomer updateLoan(LoanCustomer existingLoan){
+        return this.repo.save(existingLoan);
+    }
+
+    public boolean deleteLoanById(long loanId){
+        boolean isPresent = true;
+        this.repo.deleteById(loanId);
+        boolean isDeleted = this.repo.existsById(loanId);
+        if(!isDeleted){
+            isPresent = false;
+        }
+        return isPresent;
+    }
+
+     public boolean deleteLoan(LoanCustomer existingLoan){
+         boolean isPresent = true;
+         this.repo.delete(existingLoan);
+         boolean isDeleted = this.repo.existsById(existingLoan.getLoanId());
+         if(!isDeleted){
+             isPresent = false;
+         }
+         return isPresent;
+     }
 }
