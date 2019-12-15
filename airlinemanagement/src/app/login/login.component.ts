@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {CompinteractionService} from '../compinteraction.service';
 
 @Component({
   selector: 'app-login',
@@ -9,13 +11,16 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+
   formConfig: any[] = [
     {name: 'userName', type: 'text', label: 'User Name', constraint: [Validators.required,
-        Validators.minLength(4), Validators.maxLength(8)], placeholder: 'Enter UserName'},
-    {name: 'passWord', type: 'password', label: 'Password', constraint: Validators.required, placeholder: 'Enter UserName'}
+        Validators.minLength(4), Validators.maxLength(8)],
+      placeholder: 'Enter UserName', errorMsg: 'User Name Required'},
+     {name: 'passWord', type: 'password', label: 'Password', constraint: Validators.required,
+       placeholder: 'Enter UserName', errorMsg: 'Password Required'}
     ];
   private loginStatus: string;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router: Router, private service: CompinteractionService) { }
 
   ngOnInit() {
     this.loginForm = this.createForm();
@@ -38,6 +43,9 @@ export class LoginComponent implements OnInit {
 
     if (uname === 'india' && pwd === 'india') {
       this.loginStatus = 'Valid User';
+      sessionStorage.setItem('userlogged', 'yes');
+      this.service.changeLoginStatus('logged');
+      this.router.navigate(['/showcustomer']);
     } else { this.loginStatus = 'Invalid User'; }
   }
 }

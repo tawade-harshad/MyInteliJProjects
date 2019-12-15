@@ -1,11 +1,18 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
   <ng-container *ngFor="let eachConfig of formConfig">
-    <div>
+    <div class="form-group">
     <label>{{eachConfig.label}}</label>
-    <input type="{{eachConfig.type}}" formControlName="{{eachConfig.name}}" placeholder="{{eachConfig.placeholder}}">
+    <input type="{{eachConfig.type}}" formControlName="{{eachConfig.name}}"
+           placeholder="{{eachConfig.placeholder}}" class="form-control">
     </div>
+    <span style="color: Red" *ngIf="loginForm.get(eachConfig.name).hasError('required')
+    && loginForm.get(eachConfig.name).touched">{{eachConfig.errorMsg}}</span>
+    <span style="color: Red" *ngIf="(loginForm.get(eachConfig.name).hasError('minlength')
+    || loginForm.get(eachConfig.name).hasError('maxlength'))
+    && loginForm.get(eachConfig.name).touched">{{'Should be minimum: 4 and maximum: 8'}}</span>
   </ng-container>
-  <span *ngIf="loginForm.controls.userName.errors">Error</span>
+  <!--<span style="color: Red" *ngIf="loginForm.controls.userName.invalid"></span>-->
+
   <input type="submit" value="Login">
   {{loginStatus}}
 </form>

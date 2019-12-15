@@ -12,7 +12,20 @@ import { GetpassengerdetailsComponent } from './getpassengerdetails/getpassenger
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AddloancustomerComponent } from './addloancustomer/addloancustomer.component';
 import { LoginComponent } from './login/login.component';
+import {Routes, RouterModule} from '@angular/router';
+import { LogoutComponent } from './logout/logout.component';
+import { FilterPipe } from './filter.pipe';
+import {NgxPaginationModule} from 'ngx-pagination';
 
+const routes: Routes = [
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
+  {path: 'login', component: LoginComponent },
+  {path: 'addcustomer', component: AddloancustomerComponent },
+  {path: 'showcustomer', component: ShowcustomerComponent},
+  {path: 'passenger', component: ShowpassengerComponent},
+  {path: 'logout', component: LogoutComponent},
+  {path: '**', redirectTo: 'login'}
+  ];
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,10 +36,12 @@ import { LoginComponent } from './login/login.component';
     SearchpassengerComponent,
     GetpassengerdetailsComponent,
     AddloancustomerComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent,
+    FilterPipe
   ],
   imports: [
-    BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule
+    BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot(routes), NgxPaginationModule
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

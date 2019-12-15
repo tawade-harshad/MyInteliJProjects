@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild, ViewChildren} from '@angular/core';
 import {LoanCustomer} from '../loan-customer';
 import {CustomerService} from '../customer.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-addloancustomer',
@@ -9,7 +10,10 @@ import {CustomerService} from '../customer.service';
 })
 export class AddloancustomerComponent implements OnInit {
 
-  @ViewChild('frm',{static: false}) form: any;
+  srchString = '';
+
+  @ViewChild('frm', {static: false}) form: any;
+
   customerList: LoanCustomer[];
   idxPos = 0;
   customer: LoanCustomer = {
@@ -22,10 +26,15 @@ export class AddloancustomerComponent implements OnInit {
 
   loanType = ['Car', 'Home', 'Jewel', 'Personal'];
   btnText = 'Add';
-  constructor(private service: CustomerService) { }
+  constructor(private service: CustomerService, private router: Router) { }
 
   ngOnInit() {
-    this.service.findAll().subscribe(data => this.customerList = data);
+    const loggedStatus = sessionStorage.getItem('userlogged');
+    if (loggedStatus !== 'yes') {
+       this.router.navigate(['/login']);
+    } else {
+      this.service.findAll().subscribe(data => this.customerList = data);
+    }
   }
 
   onSubmit(values) {
